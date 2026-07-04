@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Femme Impact &amp; Droit – Accueil</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,500&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+           RESET & BASE (inchangé)
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8E1438;
+            --primary-hover: #74112F;
+            --secondary: #B07A61;
+            --text-primary: #3A1F25;
+            --text-secondary: #7C6661;
+            --bg-main: #F7F1EE;
+            --bg-card: #FFFFFF;
+            --border-light: #E8D8D1;
+            --badge-bg: #F2DFD8;
+            --hero-height: 850px;
+            --header-height: 95px;
+            --max-width: 1280px;
+            --radius-card: 28px;
+            --radius-btn: 999px;
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ============================================================
+           HEADER FIXE
+           ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: #FCF9F8;
+            border-bottom: 1px solid var(--border-light);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .header.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        /* --- NOUVEAU LOGO : image depuis Cloudinary --- */
+        .logo img {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .btn-donate-header {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: var(--radius-btn);
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .btn-donate-header:hover {
+            background: var(--primary-hover);
+            transform: scale(1.02);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 6px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 4px;
+            transition: 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* ============================================================
+           HERO (inchangé)
+           ============================================================ */
+        .hero {
+            min-height: var(--hero-height);
+            background: var(--bg-main);
+            display: flex;
+            align-items: center;
+            padding-top: var(--header-height);
+            overflow: hidden;
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .hero-left {
+            flex: 0 0 48%;
+            max-width: 48%;
+        }
+
+        .hero-right {
+            flex: 0 0 52%;
+            max-width: 52%;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .badge-hero {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 24px;
+            border: 1px solid #DCC4BA;
+            border-radius: var(--radius-btn);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            background: transparent;
+            margin-bottom: 28px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 500;
+            line-height: 1.1;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .hero-title .highlight {
+            color: var(--primary);
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .hero-desc {
+            font-size: 24px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            max-width: 620px;
+            margin-bottom: 36px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 58px;
+            min-width: 170px;
+            padding: 0 32px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-btn);
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: scale(1.02);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 58px;
+            min-width: 170px;
+            padding: 0 32px;
+            background: #fff;
+            color: var(--text-primary);
+            border: 1px solid #D8C9C2;
+            border-radius: var(--radius-btn);
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-main);
+            border-color: var(--secondary);
+            transform: scale(1.02);
+        }
+
+        .btn-outline i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-outline:hover i {
+            transform: translateX(4px);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 580px;
+        }
+
+        .hero-image {
+            width: 100%;
+            aspect-ratio: 580 / 720;
+            object-fit: cover;
+            border-radius: 36px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.01);
+        }
+
+        .badge-float {
+            position: absolute;
+            bottom: -20px;
+            left: -10px;
+            background: var(--primary);
+            color: #fff;
+            padding: 18px 24px;
+            border-radius: 22px;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.4;
+            box-shadow: 0 8px 24px rgba(142, 20, 56, 0.18);
+            max-width: 220px;
+        }
+
+        .badge-float small {
+            display: block;
+            font-weight: 300;
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+           NOUVELLE SECTION : QUI SOMMES-NOUS ?
+           ============================================================ */
+        .section-about {
+            padding: 100px 0 80px;
+            background: #fff;
+        }
+
+        .section-about .container {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text .section-label {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 16px;
+        }
+
+        .about-text .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 500;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .about-text p {
+            font-size: 20px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .about-text .btn-outline {
+            margin-top: 10px;
+        }
+
+        .about-stats {
+            flex: 0 0 300px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .stat-item {
+            background: var(--bg-main);
+            border-radius: 20px;
+            padding: 28px 20px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-item .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-item .label {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+
+        /* ============================================================
+           SECTION ACTIONS EN BREF (au lieu des 6 cartes)
+           ============================================================ */
+        .section-actions {
+            padding: 100px 0;
+            background: var(--bg-main);
+        }
+
+        .section-actions .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 500;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 16px;
+        }
+
+        .section-actions .section-desc {
+            text-align: center;
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto 60px;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .action-card {
+            background: #fff;
+            border-radius: var(--radius-card);
+            padding: 32px 28px;
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .action-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .action-card .icon {
+            width: 64px;
+            height: 64px;
+            background: var(--badge-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: var(--primary);
+        }
+
+        .action-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .action-card p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           CTA FINALE
+           ============================================================ */
+        .section-cta {
+            padding: 0 32px 100px;
+            background: var(--bg-main);
+        }
+
+        .cta-block {
+            background: #F2E6E2;
+            border: 1px solid var(--border-light);
+            border-radius: 32px;
+            padding: 60px;
+            text-align: center;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .cta-block:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.03);
+        }
+
+        .cta-block h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 44px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .cta-block p {
+            font-size: 22px;
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 40px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-btn);
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-cta:hover {
+            background: var(--primary-hover);
+            transform: scale(1.02);
+        }
+
+        /* ============================================================
+           FOOTER (nouveau)
+           ============================================================ */
+        .footer {
+            background: #1C1115;
+            color: #CBC1BD;
+            padding: 60px 0 30px;
+            border-top: 3px solid var(--primary);
+        }
+
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-col {
+            flex: 1 1 200px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p,
+        .footer-col li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #CBC1BD;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: #CBC1BD;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+            font-size: 15px;
+            color: #A09691;
+            width: 100%;
+        }
+
+        .footer-bottom a {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .hero .container {
+                flex-direction: column;
+                gap: 50px;
+                padding-top: 20px;
+                padding-bottom: 40px;
+            }
+
+            .hero-left {
+                flex: 1 1 auto;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .hero-right {
+                flex: 1 1 auto;
+                max-width: 100%;
+                justify-content: center;
+            }
+
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 56px;
+            }
+
+            .section-about .container {
+                flex-direction: column;
+            }
+
+            .about-stats {
+                flex: 1 1 auto;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .actions-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+
+            .badge-float {
+                left: 10px;
+                bottom: -10px;
+            }
+
+            .hero-image-wrapper {
+                max-width: 480px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 72px;
+            }
+
+            .container {
+                padding: 0 24px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: #FCF9F8;
+                flex-direction: column;
+                gap: 16px;
+                padding: 32px 24px 40px;
+                border-bottom: 1px solid var(--border-light);
+                transform: translateY(-120%);
+                transition: transform 0.4s ease;
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+                align-items: flex-start;
+                z-index: 999;
+            }
+
+            .nav-menu.open {
+                transform: translateY(0);
+            }
+
+            .nav-menu a {
+                font-size: 20px;
+                width: 100%;
+                padding: 6px 0;
+            }
+
+            .btn-donate-header {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .logo-text {
+                font-size: 18px;
+            }
+
+            .logo img {
+                width: 44px;
+                height: 44px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 100px 0 60px;
+            }
+
+            .hero-title {
+                font-size: 42px;
+            }
+
+            .hero-desc {
+                font-size: 18px;
+                max-width: 100%;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-outline {
+                width: 100%;
+                min-width: unset;
+                height: 52px;
+            }
+
+            .hero-image-wrapper {
+                max-width: 100%;
+            }
+
+            .hero-image {
+                aspect-ratio: 4 / 5;
+                border-radius: 24px;
+            }
+
+            .badge-float {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin-top: -10px;
+                max-width: 100%;
+                border-radius: 18px;
+                padding: 14px 20px;
+                font-size: 14px;
+                text-align: center;
+            }
+
+            .badge-hero {
+                font-size: 11px;
+                padding: 8px 18px;
+                letter-spacing: 3px;
+            }
+
+            .section-about {
+                padding: 60px 0;
+            }
+
+            .about-text .section-title {
+                font-size: 36px;
+            }
+
+            .about-text p {
+                font-size: 18px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .stat-item .number {
+                font-size: 32px;
+            }
+
+            .section-actions {
+                padding: 60px 0;
+            }
+
+            .section-actions .section-title {
+                font-size: 36px;
+            }
+
+            .actions-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .section-cta {
+                padding: 0 24px 60px;
+            }
+
+            .cta-block {
+                padding: 40px 24px;
+                border-radius: 24px;
+            }
+
+            .cta-block h2 {
+                font-size: 32px;
+            }
+
+            .cta-block p {
+                font-size: 18px;
+            }
+
+            .btn-cta {
+                width: 100%;
+                padding: 14px 24px;
+            }
+
+            .footer .container {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 34px;
+            }
+
+            .about-text .section-title {
+                font-size: 30px;
+            }
+
+            .stat-item .number {
+                font-size: 28px;
+            }
+
+            .action-card {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <!-- Logo image (Cloudinary) -->
+                <img src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783107902/WhatsApp_Image_2026-07-03_at_19.43.31_mp2ied.jpg" alt="Femme Impact & Droit - Logo" />
+                <span class="logo-text">Femme Impact <span>&amp;</span> Droit</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="vosdroit.html">Vos droits</a></li>
+                <li><a href="nosaction.html">Nos actions</a></li>
+                <li><a href="apropos.html">À propos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <button class="btn-donate-header">Faire un don</button>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-left">
+                <div class="badge-hero">Notre mission</div>
+                <h1 class="hero-title">
+                    Connaître ses droits,<br />
+                    <span class="highlight">c'est exister.</span>
+                </h1>
+                <p class="hero-desc">
+                    Accompagnement des femmes en France et en Afrique pour
+                    connaître, faire valoir et défendre leurs droits
+                    fondamentaux.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary">Nous Contacter</button>
+                    <button class="btn-outline" id="discoverBtn">
+                        Découvrir vos droits <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="hero-image-wrapper">
+                    <!-- Image d'illustration (à remplacer par votre propre image) -->
+                    <img
+                    src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783115138/image1_wnos32.webp
+
+
+"
+                    alt="Femme confiante"
+                    class="hero-image"
+                    />
+                    <div class="badge-float">
+                        BASÉES EN FRANCE
+                        <small>Actions en Afrique</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION QUI SOMMES-NOUS (avec valeurs et ODD 16)
+    ============================================================ -->
+    <section class="section-about" id="about">
+        <div class="container">
+            <div class="about-text">
+                <div class="section-label">Qui sommes-nous</div>
+                <h2 class="section-title">Un engagement à vos côtés</h2>
+                <p>
+                    <strong>Femme Impact &amp; Droit</strong> est une association
+                    dédiée à l'autonomisation des femmes par la connaissance et la
+                    défense de leurs droits. Présentes en France, au Sénégal et au Congo,
+                    nous agissons pour que chaque femme puisse vivre librement,
+                    en sécurité et dans la dignité.
+                </p>
+                <p>
+                    <strong>Nos valeurs :</strong> le respect, une écoute bienveillante
+                    sans jugement, l'accès gratuit à l'information juridique, et
+                    la confidentialité absolue de vos données.
+                </p>
+                <p>
+                    <i class="fas fa-globe-africa" style="color:var(--primary);margin-right:8px;"></i>
+                    Notre action s'inscrit dans l'<strong>Objectif de Développement Durable
+                    n°16</strong> des Nations Unies : promotion de la justice, de la paix
+                    et de la confiance dans les institutions.
+                </p>
+                <button class="btn-outline" onclick="window.location.href='#actions'">
+                    Découvrir nos actions <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            <div class="about-stats">
+                <div class="stat-item">
+                    <span class="number">1500+</span>
+                    <span class="label">Femmes accompagnées</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">3</span>
+                    <span class="label">Pays d'intervention</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">95%</span>
+                    <span class="label">Satisfaction</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">40</span>
+                    <span class="label">Bénévoles actifs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION ACTIONS (avec objectifs de communication)
+    ============================================================ -->
+    <section class="section-actions" id="actions">
+        <div class="container">
+            <h2 class="section-title">Nos actions pour vous</h2>
+            <p class="section-desc">
+                Nous intervenons sur tous les fronts pour vous informer, vous
+                orienter et vous défendre.
+            </p>
+            <div class="actions-grid">
+                <div class="action-card">
+                    <div class="icon"><i class="fas fa-gavel"></i></div>
+                    <h3>Conseil juridique</h3>
+                    <p>Permanences gratuites pour vous aider à faire valoir vos droits.</p>
+                </div>
+                <div class="action-card">
+                    <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3>Soutien social</h3>
+                    <p>Écoute, orientation vers des hébergements et accompagnement personnalisé.</p>
+                </div>
+                <div class="action-card">
+                    <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3>Ateliers &amp; sensibilisation</h3>
+                    <p>Formations pour connaître vos droits, en France comme en Afrique.</p>
+                </div>
+                <div class="action-card">
+                    <div class="icon"><i class="fas fa-globe-africa"></i></div>
+                    <h3>Projets internationaux</h3>
+                    <p>Actions de terrain au Sénégal, au Bénin, en Côte d'Ivoire et au-delà.</p>
+                </div>
+                <div class="action-card">
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <h3>Groupe de parole</h3>
+                    <p>Espaces d'échange entre femmes pour briser l'isolement.</p>
+                </div>
+                <div class="action-card">
+                    <div class="icon"><i class="fas fa-bullhorn"></i></div>
+                    <h3>Communication & plaidoyer</h3>
+                    <p>
+                        Objectif 2026 : 1 000 abonnés sur Instagram/TikTok, 1 500 sur LinkedIn,
+                        et des partenariats stratégiques.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CTA FINALE
+    ============================================================ -->
+    <section class="section-cta" id="contact">
+        <div class="cta-block">
+            <h2>Besoin d'être orientée ?</h2>
+            <p>
+                Nos bénévoles peuvent vous écouter et vous orienter vers les
+                bonnes ressources. L'échange est confidentiel et gratuit.
+            </p>
+            <button class="btn-cta" id="ctaBtn">Nous contacter</button>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER (nouveau)
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h4>Femme Impact &amp; Droit</h4>
+                <p>
+                    Association loi 1901 – à but non lucratif.<br />
+                    Informer, accompagner, défendre les droits des femmes.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Nos territoires</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt" style="color:var(--secondary);width:20px;"></i> France</li>
+                    <li><i class="fas fa-map-marker-alt" style="color:var(--secondary);width:20px;"></i> Sénégal</li>
+                    <li><i class="fas fa-map-marker-alt" style="color:var(--secondary);width:20px;"></i> Congo</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Suivez-nous</h4>
+                <ul>
+                    <li><a href="#"><i class="fab fa-instagram" style="margin-right:8px;"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-tiktok" style="margin-right:8px;"></i> TikTok</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin-in" style="margin-right:8px;"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fas fa-envelope" style="color:var(--secondary);width:20px;"></i> contact@femmeimpactdroit.org</li>
+                    <li><i class="fas fa-phone" style="color:var(--secondary);width:20px;"></i> +33 1 23 45 67 89</li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                &copy; <span id="year"></span> Femme Impact &amp; Droit – Tous droits réservés.
+                &nbsp;|&nbsp; <a href="#">Mentions légales</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // Header scroll shadow
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 10) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }, { passive: true });
+
+            // Hamburger
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('open');
+                navMenu.classList.toggle('open');
+            });
+
+            navMenu.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('open');
+                    navMenu.classList.remove('open');
+                });
+            });
+
+            // Boutons simulation
+            document.querySelectorAll('.btn-donate-header, .btn-primary').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    alert('🔹 Redirection vers la page de donation (simulation).');
+                });
+            });
+
+            document.getElementById('ctaBtn').addEventListener('click', function() {
+                alert('📩 Formulaire de contact (simulation).');
+            });
+
+            // Découvrir vos droits -> scroll vers section actions
+            document.getElementById('discoverBtn').addEventListener('click', function() {
+                document.getElementById('actions').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // Année dynamique dans le footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            console.log('✅ Page Accueil – Femme Impact & Droit (version corrigée)');
+        })();
+    </script>
+
+</body>
+</html>
