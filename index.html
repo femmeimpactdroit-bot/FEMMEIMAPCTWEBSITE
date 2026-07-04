@@ -15,7 +15,7 @@
 
     <style>
         /* ============================================================
-           RESET & BASE (inchangé)
+           RESET & BASE
            ============================================================ */
         *,
         *::before,
@@ -108,7 +108,6 @@
             flex-shrink: 0;
         }
 
-        /* --- NOUVEAU LOGO : image depuis Cloudinary --- */
         .logo img {
             width: 52px;
             height: 52px;
@@ -215,7 +214,7 @@
         }
 
         /* ============================================================
-           HERO (inchangé)
+           HERO
            ============================================================ */
         .hero {
             min-height: var(--hero-height);
@@ -391,7 +390,7 @@
         }
 
         /* ============================================================
-           NOUVELLE SECTION : QUI SOMMES-NOUS ?
+           SECTION QUI SOMMES-NOUS
            ============================================================ */
         .section-about {
             padding: 100px 0 80px;
@@ -472,7 +471,7 @@
         }
 
         /* ============================================================
-           SECTION ACTIONS EN BREF (au lieu des 6 cartes)
+           SECTION ACTIONS
            ============================================================ */
         .section-actions {
             padding: 100px 0;
@@ -602,7 +601,7 @@
         }
 
         /* ============================================================
-           FOOTER (nouveau)
+           FOOTER
            ============================================================ */
         .footer {
             background: #1C1115;
@@ -932,7 +931,6 @@
     <header class="header" id="header">
         <div class="container">
             <a href="index.html" class="logo">
-                <!-- Logo image (Cloudinary) -->
                 <img src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783107902/WhatsApp_Image_2026-07-03_at_19.43.31_mp2ied.jpg" alt="Femme Impact & Droit - Logo" />
                 <span class="logo-text">Femme Impact <span>&amp;</span> Droit</span>
             </a>
@@ -972,26 +970,22 @@
                     fondamentaux.
                 </p>
                 <div class="hero-buttons">
-                    <button class="btn-primary">Nous Contacter</button>
-                    <button class="btn-outline" id="discoverBtn">
+                    <a href="contact.html" class="btn-primary">Nous Contacter</a>
+                    <a href="vosdroit.html" class="btn-outline">
                         Découvrir vos droits <i class="fas fa-arrow-right"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
 
             <div class="hero-right">
                 <div class="hero-image-wrapper">
-                    <!-- Image d'illustration (à remplacer par votre propre image) -->
                     <img
-                    src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783115138/image1_wnos32.webp
-
-
-"
+                    src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783115138/image1_wnos32.webp"
                     alt="Femme confiante"
                     class="hero-image"
                     />
                     <div class="badge-float">
-                        BASÉES EN FRANCE
+                        BASÉE EN FRANCE
                         <small>Actions en Afrique</small>
                     </div>
                 </div>
@@ -1000,7 +994,7 @@
     </section>
 
     <!-- ============================================================
-    SECTION QUI SOMMES-NOUS (avec valeurs et ODD 16)
+    SECTION QUI SOMMES-NOUS
     ============================================================ -->
     <section class="section-about" id="about">
         <div class="container">
@@ -1010,7 +1004,7 @@
                 <p>
                     <strong>Femme Impact &amp; Droit</strong> est une association
                     dédiée à l'autonomisation des femmes par la connaissance et la
-                    défense de leurs droits. Présentes en France, au Sénégal et au Congo,
+                    défense de leurs droits. Présente en France, au Sénégal et au Congo,
                     nous agissons pour que chaque femme puisse vivre librement,
                     en sécurité et dans la dignité.
                 </p>
@@ -1025,9 +1019,9 @@
                     n°16</strong> des Nations Unies : promotion de la justice, de la paix
                     et de la confiance dans les institutions.
                 </p>
-                <button class="btn-outline" onclick="window.location.href='#actions'">
+                <a href="nosaction.html" class="btn-outline">
                     Découvrir nos actions <i class="fas fa-arrow-right"></i>
-                </button>
+                </a>
             </div>
             <div class="about-stats">
                 <div class="stat-item">
@@ -1051,7 +1045,7 @@
     </section>
 
     <!-- ============================================================
-    SECTION ACTIONS (avec objectifs de communication)
+    SECTION ACTIONS
     ============================================================ -->
     <section class="section-actions" id="actions">
         <div class="container">
@@ -1108,12 +1102,12 @@
                 Nos bénévoles peuvent vous écouter et vous orienter vers les
                 bonnes ressources. L'échange est confidentiel et gratuit.
             </p>
-            <button class="btn-cta" id="ctaBtn">Nous contacter</button>
+            <a href="contact.html" class="btn-cta">Nous contacter</a>
         </div>
     </section>
 
     <!-- ============================================================
-    FOOTER (nouveau)
+    FOOTER
     ============================================================ -->
     <footer class="footer">
         <div class="container">
@@ -1135,16 +1129,16 @@
             <div class="footer-col">
                 <h4>Suivez-nous</h4>
                 <ul>
-                    <li><a href="#"><i class="fab fa-instagram" style="margin-right:8px;"></i> Instagram</a></li>
-                    <li><a href="#"><i class="fab fa-tiktok" style="margin-right:8px;"></i> TikTok</a></li>
+                    <li><a href="https://www.instagram.com/femme_impact_et_droit?igsh=M2FpaDB1azZzajJm" target="_blank"><i class="fab fa-instagram" style="margin-right:8px;"></i> Instagram</a></li>
+                    <li><a href="https://www.instagram.com/femme_impact_et_droit?igsh=M2FpaDB1azZzajJm" target="_blank"><i class="fab fa-tiktok" style="margin-right:8px;"></i> TikTok</a></li>
                     <li><a href="#"><i class="fab fa-linkedin-in" style="margin-right:8px;"></i> LinkedIn</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
                 <ul>
-                    <li><i class="fas fa-envelope" style="color:var(--secondary);width:20px;"></i> contact@femmeimpactdroit.org</li>
-                    <li><i class="fas fa-phone" style="color:var(--secondary);width:20px;"></i> +33 1 23 45 67 89</li>
+                    <li><i class="fas fa-envelope" style="color:var(--secondary);width:20px;"></i>femmeimpactdroit@gmail.com</li>
+                    <li><i class="fas fa-phone" style="color:var(--secondary);width:20px;"></i> +221 77 787 37 02</li>
                 </ul>
             </div>
             <div class="footer-bottom">
@@ -1187,26 +1181,15 @@
                 });
             });
 
-            // Boutons simulation
-            document.querySelectorAll('.btn-donate-header, .btn-primary').forEach(function(btn) {
-                btn.addEventListener('click', function(e) {
-                    alert('🔹 Redirection vers la page de donation (simulation).');
-                });
-            });
-
-            document.getElementById('ctaBtn').addEventListener('click', function() {
-                alert('📩 Formulaire de contact (simulation).');
-            });
-
-            // Découvrir vos droits -> scroll vers section actions
-            document.getElementById('discoverBtn').addEventListener('click', function() {
-                document.getElementById('actions').scrollIntoView({ behavior: 'smooth' });
+            // Bouton Faire un don
+            document.querySelector('.btn-donate-header').addEventListener('click', function(e) {
+                alert('🔹 Redirection vers la page de donation (simulation).');
             });
 
             // Année dynamique dans le footer
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            console.log('✅ Page Accueil – Femme Impact & Droit (version corrigée)');
+            console.log('✅ Page Accueil – Femme Impact & Droit (version finale)');
         })();
     </script>
 
