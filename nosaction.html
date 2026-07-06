@@ -72,7 +72,7 @@
         }
 
         /* ============================================================
-           HEADER FIXE (logo image)
+           HEADER FIXE
            ============================================================ */
         .header {
             position: fixed;
@@ -377,6 +377,28 @@
             margin-top: 1px;
         }
 
+        .action-card .btn-card {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-btn);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            text-align: center;
+            align-self: flex-start;
+        }
+
+        .action-card .btn-card:hover {
+            background: var(--primary-hover);
+            transform: scale(1.02);
+            color: #fff;
+        }
+
         /* ============================================================
            SECTION CTA
            ============================================================ */
@@ -431,7 +453,7 @@
         }
 
         /* ============================================================
-           FOOTER (identique aux autres pages)
+           FOOTER
            ============================================================ */
         .footer {
             background: #1C1115;
@@ -608,6 +630,11 @@
                 font-size: 22px;
             }
 
+            .action-card .btn-card {
+                align-self: stretch;
+                text-align: center;
+            }
+
             .legal-cta-block {
                 padding: 40px 24px;
                 border-radius: 24px;
@@ -654,7 +681,7 @@
 <body>
 
     <!-- ============================================================
-    HEADER (logo image)
+    HEADER
     ============================================================ -->
     <header class="header" id="header">
         <div class="container">
@@ -662,15 +689,16 @@
                 <img src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783107902/WhatsApp_Image_2026-07-03_at_19.43.31_mp2ied.jpg" alt="Femme Impact & Droit - Logo" />
                 <span class="logo-text">Femme Impact <span>&amp;</span> Droit</span>
             </a>
- <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="active">Accueil</a></li>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Accueil</a></li>
                 <li><a href="vosdroit.html">Vos droits</a></li>
-                <li><a href="nosaction.html">Nos actions</a></li>
+                <li><a href="nosaction.html" class="active">Nos actions</a></li>
                 <li><a href="apropos.html">À propos</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
 
-                       <a href="r" class="btn-contact-header">Faire un don</a>
+            <a href="contact.html" class="btn-contact-header">Faire un don</a>
 
             <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span>
@@ -695,7 +723,7 @@
     </section>
 
     <!-- ============================================================
-    SECTION ACTIONS AVEC VOS IMAGES CLOUDINARY
+    SECTION ACTIONS
     ============================================================ -->
     <section class="section-actions">
         <div class="container">
@@ -714,8 +742,8 @@
                 <div class="action-card">
                     <div class="card-icon"><i class="fas fa-users"></i></div>
                     <h3>Ateliers de sensibilisation</h3>
-                    <div class="subtitle">Informer &amp; prévenir</div>
-                    <img src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783103047/waxtane_h9ftgl.jpg" alt="Ateliers de sensibilisation" class="action-image" />
+                    <div class="subtitle">INFORMER &amp; PRÉVENIR</div>
+                    <img src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783264391/Online_doctor_consultation_mumbai_k34whx.jpg" alt="Ateliers de sensibilisation" class="action-image" />
                     <p>
                         Nous organisons des ateliers dans les quartiers, les écoles
                         et les entreprises pour informer sur les droits et prévenir
@@ -726,42 +754,44 @@
                         <li>Prévention des violences conjugales</li>
                         <li>Santé et droits reproductifs</li>
                     </ul>
+                    <a href="formulaire.html" class="btn-card">Accéder au formulaire</a>
                 </div>
 
                 <!-- Action 2 : Permanences juridiques -->
                 <div class="action-card">
                     <div class="card-icon"><i class="fas fa-gavel"></i></div>
                     <h3>Permanences juridiques</h3>
-                    <div class="subtitle">Accompagnement gratuit</div>
-                    <img src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783103047/tribunal_utdr5r.jpg" alt="Permanences juridiques" class="action-image" />
+                    <div class="subtitle">Accompagnement en ligne gratuit</div>
+                    <img src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783103047/tribunal_utdr5r.jpg" alt="Permanence juridique" class="action-image" />
                     <p>
-                        Des juristes bénévoles vous reçoivent en entretien
-                        confidentiel pour vous aider dans vos démarches et vous
-                        orienter vers les bonnes solutions.
+                        Notre permanence juridique en ligne vous répond et vous oriente
+                        vers les démarches adaptées. Informations générales, confidentialité
+                        garantie, réponse sous 48‑72h ouvrées.
                     </p>
-                    <ul>
-                        <li>Conseils personnalisés</li>
-                        <li>Aide à la rédaction de courriers</li>
-                        <li>Orientation vers des avocats partenaires</li>
-                    </ul>
+                    <p style="font-size: 14px; background: #f8f0ed; padding: 12px; border-radius: 12px; margin: 8px 0;">
+                        <i class="fas fa-lock" style="color: var(--primary); margin-right: 6px;"></i>
+                        Tous les échanges sont confidentiels. La permanence ne remplace pas une consultation juridique personnalisée.
+                    </p>
+                    <a href="formulaire.html" class="btn-card">Accéder au formulaire</a>
                 </div>
 
-                <!-- Action 3 : Représentation des intérêts-->
+                <!-- Action 3 : Plaidoyer -->
                 <div class="action-card">
                     <div class="card-icon"><i class="fas fa-landmark"></i></div>
-                    <h3>Représentation des intérêts</h3>
-                    <div class="subtitle">Faire évoluer la loi</div>
+                    <h3>Plaidoyer</h3>
+                    <div class="subtitle">FAIRE ÉVOLUER LA LOI</div>
                     <img src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783198250/WhatsApp_Image_2026-07-04_at_20.40.44_1_l2rxwt.jpg" alt="Plaidoyer" class="action-image" />
                     <p>
-                        Nous portons la voix des femmes auprès des décideurs
-                        politiques pour faire avancer les lois en faveur de l'égalité
-                        et de la protection des droits.
+                        Nous portons la voix des femmes auprès des décideurs politiques
+                        pour faire avancer les lois en faveur de l'égalité et de la
+                        protection des droits.
                     </p>
                     <ul>
                         <li>Rencontres avec les parlementaires</li>
                         <li>Propositions de loi</li>
                         <li>Campagnes de sensibilisation citoyenne</li>
                     </ul>
+                    <a href="formulaire.html" class="btn-card">Accéder au formulaire</a>
                 </div>
 
                 <!-- Action 4 : Accompagnement personnalisé -->
@@ -780,6 +810,7 @@
                         <li>Mise en relation avec des services sociaux</li>
                         <li>Suivi régulier</li>
                     </ul>
+                    <a href="formulaire.html" class="btn-card">Accéder au formulaire</a>
                 </div>
 
                 <!-- Action 5 : Partenariats locaux -->
@@ -798,9 +829,8 @@
                         <li>Relais en milieu rural et urbain</li>
                         <li>Actions conjointes</li>
                     </ul>
+                    <a href="formulaire.html" class="btn-card">Accéder au formulaire</a>
                 </div>
-
-               
 
             </div>
         </div>
@@ -826,7 +856,7 @@
     <!-- ============================================================
     FOOTER
     ============================================================ -->
-    <   <footer class="footer">
+    <footer class="footer">
         <div class="container">
             <div class="footer-col">
                 <h4>Femme Impact &amp; Droit</h4>
@@ -854,7 +884,7 @@
             <div class="footer-col">
                 <h4>Contact</h4>
                 <ul>
-                    <li><i class="fas fa-envelope" style="color:var(--secondary);width:20px;"></i>femmeimpactdroit@gmail.com</li>
+                    <li><i class="fas fa-envelope" style="color:var(--secondary);width:20px;"></i> femmeimpactdroit@gmail.com</li>
                     <li><i class="fas fa-phone" style="color:var(--secondary);width:20px;"></i> +221 77 787 37 02</li>
                 </ul>
             </div>
@@ -864,7 +894,8 @@
             </div>
         </div>
     </footer>
-============================================================
+
+    <!-- ============================================================
     JAVASCRIPT
     ============================================================ -->
     <script>
@@ -905,7 +936,7 @@
             // --- Année dynamique dans le footer ---
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            console.log('✅ Page Nos actions — corrigée avec footer et logo image.');
+            console.log('✅ Page Nos actions — boutons "Accéder au formulaire" sur toutes les cartes, lien vers formulaire.html');
         })();
     </script>
 
