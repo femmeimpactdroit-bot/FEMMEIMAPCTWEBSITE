@@ -73,6 +73,50 @@
         }
 
         /* ============================================================
+           GESTION DES LANGUES (caché / affiché)
+           ============================================================ */
+        .lang-en {
+            display: none;
+        }
+
+        .lang-fr {
+            display: inline;
+        }
+
+        body.lang-active .lang-en {
+            display: inline;
+        }
+
+        body.lang-active .lang-fr {
+            display: none;
+        }
+
+        /* Pour les éléments en block (titres, paragraphes, etc.) on force le display block */
+        .lang-fr-block,
+        .lang-en-block {
+            display: block;
+        }
+
+        body.lang-active .lang-en-block {
+            display: block;
+        }
+        body.lang-active .lang-fr-block {
+            display: none;
+        }
+
+        /* Cas particulier pour les boutons, liens, etc. on utilise inline-block */
+        .lang-fr-ib,
+        .lang-en-ib {
+            display: inline-block;
+        }
+        body.lang-active .lang-en-ib {
+            display: inline-block;
+        }
+        body.lang-active .lang-fr-ib {
+            display: none;
+        }
+
+        /* ============================================================
            HEADER FIXE
            ============================================================ */
         .header {
@@ -165,6 +209,13 @@
             border-radius: 2px;
         }
 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
         .btn-donate-header {
             background: var(--primary);
             color: #fff;
@@ -175,13 +226,45 @@
             border: none;
             cursor: pointer;
             transition: background 0.3s ease, transform 0.2s ease;
-            flex-shrink: 0;
             white-space: nowrap;
         }
 
         .btn-donate-header:hover {
             background: var(--primary-hover);
             transform: scale(1.02);
+        }
+
+        .btn-lang {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-btn);
+            padding: 10px 18px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            background: #fff;
+        }
+
+        .btn-lang:hover {
+            border-color: var(--secondary);
+            color: var(--text-primary);
+            background: var(--bg-main);
+        }
+
+        .btn-lang i {
+            font-size: 16px;
+            color: var(--secondary);
+        }
+
+        .btn-lang .lang-indicator {
+            font-weight: 700;
+            color: var(--primary);
         }
 
         .hamburger {
@@ -775,8 +858,17 @@
                 display: none;
             }
 
+            .btn-lang {
+                padding: 8px 14px;
+                font-size: 14px;
+            }
+
             .hamburger {
                 display: flex;
+            }
+
+            .header-actions {
+                gap: 8px;
             }
 
             .logo-text {
@@ -936,20 +1028,55 @@
             </a>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="active">Accueil</a></li>
-                <li><a href="vosdroit.html">Vos droits</a></li>
-                <li><a href="nosaction.html">Nos actions</a></li>
-                <li><a href="apropos.html">À propos</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li>
+                    <a href="index.html" class="active">
+                        <span class="lang-fr">Accueil</span>
+                        <span class="lang-en">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="vosdroit.html">
+                        <span class="lang-fr">Vos droits</span>
+                        <span class="lang-en">Your rights</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="nosaction.html">
+                        <span class="lang-fr">Nos actions</span>
+                        <span class="lang-en">Our actions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="apropos.html">
+                        <span class="lang-fr">À propos</span>
+                        <span class="lang-en">About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="contact.html">
+                        <span class="lang-fr">Contact</span>
+                        <span class="lang-en">Contact</span>
+                    </a>
+                </li>
             </ul>
 
-            <button class="btn-donate-header">Faire un don</button>
+            <div class="header-actions">
+                <button class="btn-donate-header">
+                    <span class="lang-fr">Faire un don</span>
+                    <span class="lang-en">Donate</span>
+                </button>
 
-            <button class="hamburger" id="hamburger" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+                <button class="btn-lang" id="langToggle" aria-label="Changer la langue / Switch language">
+                    <i class="fas fa-globe"></i>
+                    <span class="lang-indicator" id="langIndicator">FR</span>
+                </button>
+
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -959,20 +1086,40 @@
     <section class="hero" id="hero">
         <div class="container">
             <div class="hero-left">
-                <div class="badge-hero">Notre mission</div>
+                <div class="badge-hero">
+                    <span class="lang-fr">Notre mission</span>
+                    <span class="lang-en">Our mission</span>
+                </div>
                 <h1 class="hero-title">
-                    Connaître ses droits,<br />
-                    <span class="highlight">c'est exister.</span>
+                    <span class="lang-fr">
+                        Connaître ses droits,<br />
+                        <span class="highlight">c'est exister.</span>
+                    </span>
+                    <span class="lang-en">
+                        Knowing your rights<br />
+                        <span class="highlight">is existing.</span>
+                    </span>
                 </h1>
                 <p class="hero-desc">
-                    Accompagnement des femmes en France et en Afrique pour
-                    connaître, faire valoir et défendre leurs droits
-                    fondamentaux.
+                    <span class="lang-fr">
+                        Accompagnement des femmes en France et en Afrique pour
+                        connaître, faire valoir et défendre leurs droits
+                        fondamentaux.
+                    </span>
+                    <span class="lang-en">
+                        Supporting women in France and Africa to know, assert and
+                        defend their fundamental rights.
+                    </span>
                 </p>
                 <div class="hero-buttons">
-                    <a href="contact.html" class="btn-primary">Nous Contacter</a>
+                    <a href="contact.html" class="btn-primary">
+                        <span class="lang-fr">Nous Contacter</span>
+                        <span class="lang-en">Contact Us</span>
+                    </a>
                     <a href="vosdroit.html" class="btn-outline">
-                        Découvrir vos droits <i class="fas fa-arrow-right"></i>
+                        <span class="lang-fr">Découvrir vos droits</span>
+                        <span class="lang-en">Discover your rights</span>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -981,12 +1128,16 @@
                 <div class="hero-image-wrapper">
                     <img
                     src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783115138/image1_wnos32.webp"
-                    alt="Femme confiante"
+                    alt="Femme confiante / Confident woman"
                     class="hero-image"
                     />
                     <div class="badge-float">
-                        BASÉE EN FRANCE
-                        <small>Actions en Afrique</small>
+                        <span class="lang-fr">BASÉE EN FRANCE</span>
+                        <span class="lang-en">BASED IN FRANCE</span>
+                        <small>
+                            <span class="lang-fr">Actions en Afrique</span>
+                            <span class="lang-en">Actions in Africa</span>
+                        </small>
                     </div>
                 </div>
             </div>
@@ -999,46 +1150,88 @@
     <section class="section-about" id="about">
         <div class="container">
             <div class="about-text">
-                <div class="section-label">Qui sommes-nous</div>
-                <h2 class="section-title">Un engagement à vos côtés</h2>
+                <div class="section-label">
+                    <span class="lang-fr">Qui sommes-nous</span>
+                    <span class="lang-en">Who we are</span>
+                </div>
+                <h2 class="section-title">
+                    <span class="lang-fr">Un engagement à vos côtés</span>
+                    <span class="lang-en">A commitment by your side</span>
+                </h2>
                 <p>
-                    <strong>Femme Impact &amp; Droit</strong> est une association
-                    dédiée à l'autonomisation des femmes par la connaissance et la
-                    défense de leurs droits. Présente en France, au Sénégal et au Congo,
-                    nous agissons pour que chaque femme puisse vivre librement,
-                    en sécurité et dans la dignité.
+                    <span class="lang-fr">
+                        <strong>Femme Impact &amp; Droit</strong> est une association
+                        dédiée à l'autonomisation des femmes par la connaissance et la
+                        défense de leurs droits. Présente en France, au Sénégal et au Congo,
+                        nous agissons pour que chaque femme puisse vivre librement,
+                        en sécurité et dans la dignité.
+                    </span>
+                    <span class="lang-en">
+                        <strong>Femme Impact &amp; Droit</strong> is an association
+                        dedicated to empowering women through knowledge and the defense
+                        of their rights. Present in France, Senegal and Congo,
+                        we act so that every woman can live freely, safely and with dignity.
+                    </span>
                 </p>
                 <p>
-                    <strong>Nos valeurs :</strong> le respect, une écoute bienveillante
-                    sans jugement, l'accès gratuit à l'information juridique, et
-                    la confidentialité absolue de vos données.
+                    <span class="lang-fr">
+                        <strong>Nos valeurs :</strong> le respect, une écoute bienveillante
+                        sans jugement, l'accès gratuit à l'information juridique, et
+                        la confidentialité absolue de vos données.
+                    </span>
+                    <span class="lang-en">
+                        <strong>Our values:</strong> respect, compassionate listening
+                        without judgment, free access to legal information, and
+                        absolute confidentiality of your data.
+                    </span>
                 </p>
                 <p>
                     <i class="fas fa-globe-africa" style="color:var(--primary);margin-right:8px;"></i>
-                    Notre action s'inscrit dans l'<strong>Objectif de Développement Durable
-                    n°16</strong> des Nations Unies : promotion de la justice, de la paix
-                    et de la confiance dans les institutions.
+                    <span class="lang-fr">
+                        Notre action s'inscrit dans l'<strong>Objectif de Développement Durable
+                        n°16</strong> des Nations Unies : promotion de la justice, de la paix
+                        et de la confiance dans les institutions.
+                    </span>
+                    <span class="lang-en">
+                        Our action is part of the United Nations
+                        <strong>Sustainable Development Goal 16</strong>: promoting justice,
+                        peace and trust in institutions.
+                    </span>
                 </p>
                 <a href="nosaction.html" class="btn-outline">
-                    Découvrir nos actions <i class="fas fa-arrow-right"></i>
+                    <span class="lang-fr">Découvrir nos actions</span>
+                    <span class="lang-en">Discover our actions</span>
+                    <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
             <div class="about-stats">
                 <div class="stat-item">
                     <span class="number">1500+</span>
-                    <span class="label">Femmes accompagnées</span>
+                    <span class="label">
+                        <span class="lang-fr">Femmes accompagnées</span>
+                        <span class="lang-en">Women supported</span>
+                    </span>
                 </div>
                 <div class="stat-item">
                     <span class="number">3</span>
-                    <span class="label">Pays d'intervention</span>
+                    <span class="label">
+                        <span class="lang-fr">Pays d'intervention</span>
+                        <span class="lang-en">Countries of intervention</span>
+                    </span>
                 </div>
                 <div class="stat-item">
                     <span class="number">95%</span>
-                    <span class="label">Satisfaction</span>
+                    <span class="label">
+                        <span class="lang-fr">Satisfaction</span>
+                        <span class="lang-en">Satisfaction</span>
+                    </span>
                 </div>
                 <div class="stat-item">
                     <span class="number">40</span>
-                    <span class="label">Bénévoles actifs</span>
+                    <span class="label">
+                        <span class="lang-fr">Bénévoles actifs</span>
+                        <span class="lang-en">Active volunteers</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -1049,43 +1242,90 @@
     ============================================================ -->
     <section class="section-actions" id="actions">
         <div class="container">
-            <h2 class="section-title">Nos actions pour vous</h2>
+            <h2 class="section-title">
+                <span class="lang-fr">Nos actions pour vous</span>
+                <span class="lang-en">Our actions for you</span>
+            </h2>
             <p class="section-desc">
-                Nous intervenons sur tous les fronts pour vous informer, vous
-                orienter et vous défendre.
+                <span class="lang-fr">
+                    Nous intervenons sur tous les fronts pour vous informer, vous
+                    orienter et vous défendre.
+                </span>
+                <span class="lang-en">
+                    We work on all fronts to inform, guide and defend you.
+                </span>
             </p>
             <div class="actions-grid">
                 <div class="action-card">
                     <div class="icon"><i class="fas fa-gavel"></i></div>
-                    <h3>Conseil juridique</h3>
-                    <p>Permanences gratuites pour vous aider à faire valoir vos droits.</p>
+                    <h3>
+                        <span class="lang-fr">Conseil juridique</span>
+                        <span class="lang-en">Legal advice</span>
+                    </h3>
+                    <p>
+                        <span class="lang-fr">Permanences gratuites pour vous aider à faire valoir vos droits.</span>
+                        <span class="lang-en">Free drop‑in sessions to help you assert your rights.</span>
+                    </p>
                 </div>
                 <div class="action-card">
                     <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
-                    <h3>Soutien social</h3>
-                    <p>Écoute, orientation vers des hébergements et accompagnement personnalisé.</p>
+                    <h3>
+                        <span class="lang-fr">Soutien social</span>
+                        <span class="lang-en">Social support</span>
+                    </h3>
+                    <p>
+                        <span class="lang-fr">Écoute, orientation vers des hébergements et accompagnement personnalisé.</span>
+                        <span class="lang-en">Listening, referral to accommodation and personalised support.</span>
+                    </p>
                 </div>
                 <div class="action-card">
                     <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <h3>Ateliers &amp; sensibilisation</h3>
-                    <p>Formations pour connaître vos droits, en France comme en Afrique.</p>
+                    <h3>
+                        <span class="lang-fr">Ateliers &amp; sensibilisation</span>
+                        <span class="lang-en">Workshops &amp; awareness</span>
+                    </h3>
+                    <p>
+                        <span class="lang-fr">Formations pour connaître vos droits, en France comme en Afrique.</span>
+                        <span class="lang-en">Training to know your rights, in France and in Africa.</span>
+                    </p>
                 </div>
                 <div class="action-card">
                     <div class="icon"><i class="fas fa-globe-africa"></i></div>
-                    <h3>Projets internationaux</h3>
-                    <p>Actions de terrain au Sénégal, au Bénin, en Côte d'Ivoire et au-delà.</p>
+                    <h3>
+                        <span class="lang-fr">Projets internationaux</span>
+                        <span class="lang-en">International projects</span>
+                    </h3>
+                    <p>
+                        <span class="lang-fr">Actions de terrain au Sénégal, au Bénin, en Côte d'Ivoire et au-delà.</span>
+                        <span class="lang-en">Field actions in Senegal, Benin, Ivory Coast and beyond.</span>
+                    </p>
                 </div>
                 <div class="action-card">
                     <div class="icon"><i class="fas fa-users"></i></div>
-                    <h3>Groupe de parole</h3>
-                    <p>Espaces d'échange entre femmes pour briser l'isolement.</p>
+                    <h3>
+                        <span class="lang-fr">Groupe de parole</span>
+                        <span class="lang-en">Support group</span>
+                    </h3>
+                    <p>
+                        <span class="lang-fr">Espaces d'échange entre femmes pour briser l'isolement.</span>
+                        <span class="lang-en">Exchange spaces for women to break isolation.</span>
+                    </p>
                 </div>
                 <div class="action-card">
                     <div class="icon"><i class="fas fa-bullhorn"></i></div>
-                    <h3>Communication & plaidoyer</h3>
+                    <h3>
+                        <span class="lang-fr">Communication &amp; plaidoyer</span>
+                        <span class="lang-en">Communication &amp; advocacy</span>
+                    </h3>
                     <p>
-                        Objectif 2026 : 1 000 abonnés sur Instagram/TikTok, 1 500 sur LinkedIn,
-                        et des partenariats stratégiques.
+                        <span class="lang-fr">
+                            Objectif 2026 : 1 000 abonnés sur Instagram/TikTok, 1 500 sur LinkedIn,
+                            et des partenariats stratégiques.
+                        </span>
+                        <span class="lang-en">
+                            Goal 2026: 1,000 followers on Instagram/TikTok, 1,500 on LinkedIn,
+                            and strategic partnerships.
+                        </span>
                     </p>
                 </div>
             </div>
@@ -1097,12 +1337,24 @@
     ============================================================ -->
     <section class="section-cta" id="contact">
         <div class="cta-block">
-            <h2>Besoin d'être orientée ?</h2>
+            <h2>
+                <span class="lang-fr">Besoin d'être orientée ?</span>
+                <span class="lang-en">Need guidance?</span>
+            </h2>
             <p>
-                Nos bénévoles peuvent vous écouter et vous orienter vers les
-                bonnes ressources. L'échange est confidentiel et gratuit.
+                <span class="lang-fr">
+                    Nos bénévoles peuvent vous écouter et vous orienter vers les
+                    bonnes ressources. L'échange est confidentiel et gratuit.
+                </span>
+                <span class="lang-en">
+                    Our volunteers can listen to you and point you to the right
+                    resources. The exchange is confidential and free.
+                </span>
             </p>
-            <a href="contact.html" class="btn-cta">Nous contacter</a>
+            <a href="contact.html" class="btn-cta">
+                <span class="lang-fr">Nous contacter</span>
+                <span class="lang-en">Contact us</span>
+            </a>
         </div>
     </section>
 
@@ -1114,12 +1366,21 @@
             <div class="footer-col">
                 <h4>Femme Impact &amp; Droit</h4>
                 <p>
-                    Association loi 1901 – à but non lucratif.<br />
-                    Informer, accompagner, défendre les droits des femmes.
+                    <span class="lang-fr">
+                        Association loi 1901 – à but non lucratif.<br />
+                        Informer, accompagner, défendre les droits des femmes.
+                    </span>
+                    <span class="lang-en">
+                        Non‑profit association (French law 1901).<br />
+                        Inform, support, defend women's rights.
+                    </span>
                 </p>
             </div>
             <div class="footer-col">
-                <h4>Nos territoires</h4>
+                <h4>
+                    <span class="lang-fr">Nos territoires</span>
+                    <span class="lang-en">Our territories</span>
+                </h4>
                 <ul>
                     <li><i class="fas fa-map-marker-alt" style="color:var(--secondary);width:20px;"></i> France</li>
                     <li><i class="fas fa-map-marker-alt" style="color:var(--secondary);width:20px;"></i> Sénégal</li>
@@ -1127,7 +1388,10 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Suivez-nous</h4>
+                <h4>
+                    <span class="lang-fr">Suivez-nous</span>
+                    <span class="lang-en">Follow us</span>
+                </h4>
                 <ul>
                     <li><a href="https://www.instagram.com/femme_impact_et_droit?igsh=M2FpaDB1azZzajJm" target="_blank"><i class="fab fa-instagram" style="margin-right:8px;"></i> Instagram</a></li>
                     <li><a href="https://www.instagram.com/femme_impact_et_droit?igsh=M2FpaDB1azZzajJm" target="_blank"><i class="fab fa-tiktok" style="margin-right:8px;"></i> TikTok</a></li>
@@ -1135,15 +1399,26 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Contact</h4>
+                <h4>
+                    <span class="lang-fr">Contact</span>
+                    <span class="lang-en">Contact</span>
+                </h4>
                 <ul>
-                    <li><i class="fas fa-envelope" style="color:var(--secondary);width:20px;"></i>femmeimpactdroit@gmail.com</li>
+                    <li><i class="fas fa-envelope" style="color:var(--secondary);width:20px;"></i> femmeimpactdroit@gmail.com</li>
                     <li><i class="fas fa-phone" style="color:var(--secondary);width:20px;"></i> +221 77 787 37 02</li>
                 </ul>
             </div>
             <div class="footer-bottom">
-                &copy; <span id="year"></span> Femme Impact &amp; Droit – Tous droits réservés.
-                &nbsp;|&nbsp; <a href="#">Mentions légales</a>
+                <span class="lang-fr">
+                    &copy; <span id="year"></span> Femme Impact &amp; Droit – Tous droits réservés.
+                </span>
+                <span class="lang-en">
+                    &copy; <span id="year2"></span> Femme Impact &amp; Droit – All rights reserved.
+                </span>
+                &nbsp;|&nbsp; <a href="#">
+                    <span class="lang-fr">Mentions légales</span>
+                    <span class="lang-en">Legal notices</span>
+                </a>
             </div>
         </div>
     </footer>
@@ -1155,7 +1430,7 @@
         (function() {
             'use strict';
 
-            // Header scroll shadow
+            // ---------- Header scroll shadow ----------
             const header = document.getElementById('header');
             window.addEventListener('scroll', function() {
                 if (window.pageYOffset > 10) {
@@ -1165,7 +1440,7 @@
                 }
             }, { passive: true });
 
-            // Hamburger
+            // ---------- Hamburger ----------
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('navMenu');
 
@@ -1181,15 +1456,59 @@
                 });
             });
 
-            // Bouton Faire un don
-            document.querySelector('.btn-donate-header').addEventListener('click', function(e) {
-                alert('🔹 Redirection vers la page de donation (simulation).');
+            // ---------- Langue ----------
+            const langToggle = document.getElementById('langToggle');
+            const langIndicator = document.getElementById('langIndicator');
+            let currentLang = 'fr'; // 'fr' ou 'en'
+
+            function setLanguage(lang) {
+                const body = document.body;
+                if (lang === 'en') {
+                    body.classList.add('lang-active');
+                    langIndicator.textContent = 'EN';
+                } else {
+                    body.classList.remove('lang-active');
+                    langIndicator.textContent = 'FR';
+                }
+                currentLang = lang;
+                // Mémoriser dans localStorage pour persister
+                localStorage.setItem('preferredLang', lang);
+            }
+
+            // Récupérer la préférence sauvegardée
+            const savedLang = localStorage.getItem('preferredLang');
+            if (savedLang === 'en' || savedLang === 'fr') {
+                setLanguage(savedLang);
+            } else {
+                // Détection automatique du navigateur (optionnel)
+                const browserLang = navigator.language || navigator.languages[0];
+                if (browserLang && browserLang.startsWith('en')) {
+                    setLanguage('en');
+                } else {
+                    setLanguage('fr');
+                }
+            }
+
+            langToggle.addEventListener('click', function() {
+                const nextLang = currentLang === 'fr' ? 'en' : 'fr';
+                setLanguage(nextLang);
             });
 
-            // Année dynamique dans le footer
-            document.getElementById('year').textContent = new Date().getFullYear();
+            // ---------- Bouton Faire un don ----------
+            document.querySelector('.btn-donate-header').addEventListener('click', function(e) {
+                alert(
+                    currentLang === 'fr' ?
+                    '🔹 Redirection vers la page de donation (simulation).' :
+                    '🔹 Redirecting to donation page (simulation).'
+                );
+            });
 
-            console.log('✅ Page Accueil – Femme Impact & Droit (version finale)');
+            // ---------- Année dynamique dans le footer ----------
+            const year = new Date().getFullYear();
+            document.getElementById('year').textContent = year;
+            document.getElementById('year2').textContent = year;
+
+            console.log('✅ Page Accueil – Femme Impact & Droit (avec traduction FR/EN)');
         })();
     </script>
 
