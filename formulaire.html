@@ -15,7 +15,7 @@
 
     <style>
         /* ============================================================
-           RESET & BASE
+           RESET & BASE (inchangé)
            ============================================================ */
         *,
         *::before,
@@ -72,7 +72,7 @@
         }
 
         /* ============================================================
-           HEADER FIXE
+           HEADER FIXE (inchangé)
            ============================================================ */
         .header {
             position: fixed;
@@ -217,7 +217,7 @@
         }
 
         /* ============================================================
-           PAGE FORMULAIRE – NOUVEAU DESIGN AVEC IMAGE MOOD
+           PAGE FORMULAIRE (inchangé)
            ============================================================ */
         .page-form {
             min-height: 100vh;
@@ -234,7 +234,6 @@
             max-width: 1280px;
         }
 
-        /* --- Colonne gauche : image + texte d'accueil --- */
         .form-left {
             flex: 0 0 42%;
             display: flex;
@@ -340,7 +339,6 @@
             font-size: 18px;
         }
 
-        /* --- Colonne droite : formulaire --- */
         .form-right {
             flex: 1;
             display: flex;
@@ -519,7 +517,7 @@
         }
 
         /* ============================================================
-           FOOTER
+           FOOTER (inchangé)
            ============================================================ */
         .footer {
             background: #1C1115;
@@ -592,7 +590,7 @@
         }
 
         /* ============================================================
-           RESPONSIVE
+           RESPONSIVE (inchangé)
            ============================================================ */
         @media (max-width: 1024px) {
             .page-form .container {
@@ -773,12 +771,12 @@
     </header>
 
     <!-- ============================================================
-    PAGE FORMULAIRE – NOUVEAU DESIGN AVEC IMAGE MOOD
+    PAGE FORMULAIRE – AVEC CodeFreeForm
     ============================================================ -->
     <section class="page-form">
         <div class="container">
 
-            <!-- Colonne gauche : image + accueil chaleureux -->
+            <!-- Colonne gauche : image + accueil -->
             <div class="form-left">
                 <img
                 src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783265965/How_to_support_your_child_on_A-level_results_day_and_avoid_emotional_escalation_aebslw.jpg"
@@ -817,7 +815,25 @@
                         <strong>Important :</strong> notre permanence fournit une information et une orientation juridiques générales. Elle ne remplace pas une consultation personnalisée auprès d'un avocat.
                     </div>
 
-                    <form id="permanenceForm" action="#" method="POST">
+                    <!-- 
+                        ⚡ ICI LA MODIFICATION POUR CODEFREEFORM ⚡
+                        action = URL de l'API CodeFreeForm
+                        champ caché access_key avec votre clé 633EB8
+                    -->
+                    <form 
+                        id="permanenceForm" 
+                        action="https://api.codefreeform.com/submit" 
+                        method="POST"
+                    >
+                        <!-- Votre clé d'accès (obligatoire) -->
+                        <input type="hidden" name="access_key" value="633EB8" />
+
+                        <!-- Optionnel : personnalisez l'objet de l'e-mail reçu -->
+                        <input type="hidden" name="_subject" value="Demande de permanence juridique" />
+
+                        <!-- (Facultatif) Rediriger vers une page "merci" après envoi -->
+                        <!-- <input type="hidden" name="_next" value="https://votresite.com/merci.html" /> -->
+
                         <!-- Nom et prénom -->
                         <div class="form-group">
                             <label for="fullname">Nom et prénom <span class="required">*</span></label>
@@ -924,7 +940,7 @@
     </section>
 
     <!-- ============================================================
-    FOOTER
+    FOOTER (inchangé)
     ============================================================ -->
     <footer class="footer">
         <div class="container">
@@ -966,7 +982,7 @@
     </footer>
 
     <!-- ============================================================
-    JAVASCRIPT
+    JAVASCRIPT (uniquement menu mobile et année)
     ============================================================ -->
     <script>
         (function() {
@@ -998,33 +1014,10 @@
                 });
             });
 
-            // --- Validation du formulaire ---
-            const form = document.getElementById('permanenceForm');
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                const fullname = document.getElementById('fullname').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const country = document.getElementById('country').value;
-                const domain = document.getElementById('domain').value;
-                const description = document.getElementById('description').value.trim();
-                const urgence = document.querySelector('input[name="urgence"]:checked');
-                const contact = document.querySelector('input[name="contact"]:checked');
-                const cgu = document.getElementById('cgu').checked;
-
-                if (!fullname || !email || !country || !domain || !description || !urgence || !contact || !cgu) {
-                    alert('⚠️ Veuillez remplir tous les champs obligatoires (marqués d\'un astérisque).');
-                    return;
-                }
-
-                alert('✅ Votre demande a été envoyée avec succès ! Nous vous répondrons sous 48 à 72 heures ouvrées.');
-                form.reset();
-            });
-
             // --- Année dynamique ---
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            console.log('✅ Page formulaire – nouveau design avec image mood.');
+            console.log('✅ Formulaire connecté à CodeFreeForm avec la clé 633EB8');
         })();
     </script>
 
