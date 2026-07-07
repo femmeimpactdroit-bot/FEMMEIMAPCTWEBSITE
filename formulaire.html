@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -772,7 +771,7 @@
     </header>
 
     <!-- ============================================================
-    PAGE FORMULAIRE – CORRECTION CODE FREEFORM
+    PAGE FORMULAIRE – NOUVELLE CLÉ FAF860
     ============================================================ -->
     <section class="page-form">
         <div class="container">
@@ -817,16 +816,16 @@
                     </div>
 
                     <!-- 
-                        ⚡ CORRECTION : action = URL officielle de CodeFreeForm
-                        ⚡ et champ access_key = votre clé 633EB8
+                        ⚡ NOUVELLE CLÉ : FAF860
+                        ⚡ action = https://codefreeform.com/api/contact-api/
                     -->
                     <form 
                         id="permanenceForm" 
                         action="https://codefreeform.com/api/contact-api/" 
                         method="POST"
                     >
-                        <!-- Votre clé d'accès (obligatoire) -->
-                        <input type="hidden" name="access_key" value="633EB8" />
+                        <!-- Votre nouvelle clé d'accès (FAF860) -->
+                        <input type="hidden" name="access_key" value="FAF860" />
 
                         <!-- Optionnel : personnalisez l'objet de l'e-mail reçu -->
                         <input type="hidden" name="_subject" value="Demande de permanence juridique" />
@@ -1017,7 +1016,7 @@
             // --- Année dynamique ---
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            console.log('✅ Formulaire connecté à CodeFreeForm avec la clé 633EB8');
+            console.log('✅ Formulaire connecté à CodeFreeForm avec la clé FAF860');
         })();
     </script>
 
