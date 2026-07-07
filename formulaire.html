@@ -771,7 +771,7 @@
     </header>
 
     <!-- ============================================================
-    PAGE FORMULAIRE – NOUVELLE CLÉ FAF860
+    PAGE FORMULAIRE – CORRECTION : name="message"
     ============================================================ -->
     <section class="page-form">
         <div class="container">
@@ -816,21 +816,22 @@
                     </div>
 
                     <!-- 
-                        ⚡ NOUVELLE CLÉ : FAF860
-                        ⚡ action = https://codefreeform.com/api/contact-api/
+                        ⚡ CORRECTION : le champ texte s'appelle maintenant "message"
+                        ⚡ Clé : FAF860
+                        ⚡ action : https://codefreeform.com/api/contact-api/
                     -->
                     <form 
                         id="permanenceForm" 
                         action="https://codefreeform.com/api/contact-api/" 
                         method="POST"
                     >
-                        <!-- Votre nouvelle clé d'accès (FAF860) -->
+                        <!-- Votre clé d'accès -->
                         <input type="hidden" name="access_key" value="FAF860" />
 
-                        <!-- Optionnel : personnalisez l'objet de l'e-mail reçu -->
+                        <!-- Objet de l'e-mail -->
                         <input type="hidden" name="_subject" value="Demande de permanence juridique" />
 
-                        <!-- (Facultatif) Rediriger vers une page "merci" après envoi -->
+                        <!-- Redirection facultative -->
                         <!-- <input type="hidden" name="_next" value="https://votresite.com/merci.html" /> -->
 
                         <!-- Nom et prénom -->
@@ -881,10 +882,14 @@
                             </select>
                         </div>
 
-                        <!-- Description -->
+                        <!-- 
+                            ⚡ ICI LA CORRECTION ⚡
+                            L'ID reste "description" pour le label, 
+                            mais le NAME est "message" pour CodeFreeForm
+                        -->
                         <div class="form-group">
                             <label for="description">Décrivez votre situation ou votre question <span class="required">*</span></label>
-                            <textarea id="description" name="description" required placeholder="Exposez clairement votre demande (dates, lieux, personnes concernées…)."></textarea>
+                            <textarea id="description" name="message" required placeholder="Exposez clairement votre demande (dates, lieux, personnes concernées…)."></textarea>
                         </div>
 
                         <!-- Urgence -->
@@ -1016,7 +1021,7 @@
             // --- Année dynamique ---
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            console.log('✅ Formulaire connecté à CodeFreeForm avec la clé FAF860');
+            console.log('✅ Formulaire corrigé – champ "message" ajouté, clé FAF860');
         })();
     </script>
 
