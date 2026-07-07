@@ -757,6 +757,151 @@
         }
 
         /* ============================================================
+           MODAL – PANEL DON
+           ============================================================ */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-card {
+            background: #fff;
+            border-radius: var(--radius-card);
+            max-width: 560px;
+            width: 100%;
+            padding: 48px 40px 40px;
+            position: relative;
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.15);
+            transform: scale(0.95) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+            opacity: 0;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.2s ease;
+            line-height: 1;
+            padding: 4px 8px;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .modal-icon {
+            width: 72px;
+            height: 72px;
+            background: var(--badge-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--primary);
+            margin: 0 auto 20px;
+        }
+
+        .modal-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .modal-card h2 .highlight {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .modal-card p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .modal-card .btn-donate-modal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 16px 0;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-btn);
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 6px 20px rgba(142, 20, 56, 0.25);
+        }
+
+        .modal-card .btn-donate-modal:hover {
+            background: var(--primary-hover);
+            transform: scale(1.02);
+        }
+
+        .modal-card .btn-donate-modal i {
+            font-size: 22px;
+        }
+
+        .modal-card .modal-footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .modal-card .modal-footer a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .modal-card .modal-footer a:hover {
+            color: var(--primary-hover);
+        }
+
+        /* ============================================================
            RESPONSIVE
            ============================================================ */
         @media (max-width: 1024px) {
@@ -994,6 +1139,32 @@
                 flex-direction: column;
                 gap: 30px;
             }
+
+            /* Modal responsive */
+            .modal-card {
+                padding: 36px 24px 28px;
+                max-width: 100%;
+                margin: 0 12px;
+            }
+
+            .modal-card h2 {
+                font-size: 26px;
+            }
+
+            .modal-card p {
+                font-size: 16px;
+            }
+
+            .modal-card .btn-donate-modal {
+                font-size: 18px;
+                padding: 14px 0;
+            }
+
+            .modal-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1011,6 +1182,10 @@
 
             .action-card {
                 padding: 24px 20px;
+            }
+
+            .modal-card h2 {
+                font-size: 22px;
             }
         }
     </style>
@@ -1079,6 +1254,52 @@
             </div>
         </div>
     </header>
+
+    <!-- ============================================================
+    MODAL – PANEL DON (apparaît après 5 secondes)
+    ============================================================ -->
+    <div class="modal-overlay" id="donModal">
+        <div class="modal-card">
+            <button class="modal-close" id="modalClose" aria-label="Fermer">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="modal-icon">
+                <i class="fas fa-hand-holding-heart"></i>
+            </div>
+
+            <h2>
+                <span class="lang-fr">Soutenez <span class="highlight">notre cause</span></span>
+                <span class="lang-en">Support <span class="highlight">our cause</span></span>
+            </h2>
+
+            <p>
+                <span class="lang-fr">
+                    Chaque geste compte. Votre don nous permet d'accompagner plus de femmes,
+                    d'organiser des ateliers et de défendre leurs droits au quotidien.
+                </span>
+                <span class="lang-en">
+                    Every gesture counts. Your donation enables us to support more women,
+                    organize workshops and defend their rights every day.
+                </span>
+            </p>
+
+            <button class="btn-donate-modal" id="modalDonateBtn">
+                <i class="fas fa-heart"></i>
+                <span class="lang-fr">Faire un don</span>
+                <span class="lang-en">Donate now</span>
+            </button>
+
+            <div class="modal-footer">
+                <span class="lang-fr">
+                    <a id="modalLater">Plus tard</a> &nbsp;·&nbsp; <a id="modalNever">Ne plus afficher</a>
+                </span>
+                <span class="lang-en">
+                    <a id="modalLater">Later</a> &nbsp;·&nbsp; <a id="modalNever">Don't show again</a>
+                </span>
+            </div>
+        </div>
+    </div>
 
     <!-- ============================================================
     HERO
@@ -1311,23 +1532,7 @@
                         <span class="lang-en">Exchange spaces for women to break isolation.</span>
                     </p>
                 </div>
-                <div class="action-card">
-                    <div class="icon"><i class="fas fa-bullhorn"></i></div>
-                    <h3>
-                        <span class="lang-fr">Communication &amp; plaidoyer</span>
-                        <span class="lang-en">Communication &amp; advocacy</span>
-                    </h3>
-                    <p>
-                        <span class="lang-fr">
-                            Objectif 2026 : 1 000 abonnés sur Instagram/TikTok, 1 500 sur LinkedIn,
-                            et des partenariats stratégiques.
-                        </span>
-                        <span class="lang-en">
-                            Goal 2026: 1,000 followers on Instagram/TikTok, 1,500 on LinkedIn,
-                            and strategic partnerships.
-                        </span>
-                    </p>
-                </div>
+
             </div>
         </div>
     </section>
@@ -1459,7 +1664,7 @@
             // ---------- Langue ----------
             const langToggle = document.getElementById('langToggle');
             const langIndicator = document.getElementById('langIndicator');
-            let currentLang = 'fr'; // 'fr' ou 'en'
+            let currentLang = 'fr';
 
             function setLanguage(lang) {
                 const body = document.body;
@@ -1471,16 +1676,13 @@
                     langIndicator.textContent = 'FR';
                 }
                 currentLang = lang;
-                // Mémoriser dans localStorage pour persister
                 localStorage.setItem('preferredLang', lang);
             }
 
-            // Récupérer la préférence sauvegardée
             const savedLang = localStorage.getItem('preferredLang');
             if (savedLang === 'en' || savedLang === 'fr') {
                 setLanguage(savedLang);
             } else {
-                // Détection automatique du navigateur (optionnel)
                 const browserLang = navigator.language || navigator.languages[0];
                 if (browserLang && browserLang.startsWith('en')) {
                     setLanguage('en');
@@ -1494,13 +1696,70 @@
                 setLanguage(nextLang);
             });
 
-            // ---------- Bouton Faire un don ----------
-            document.querySelector('.btn-donate-header').addEventListener('click', function(e) {
-                alert(
-                    currentLang === 'fr' ?
+            // ---------- MODAL DON ----------
+            const modal = document.getElementById('donModal');
+            const closeBtn = document.getElementById('modalClose');
+            const donateBtn = document.getElementById('modalDonateBtn');
+            const laterLink = document.getElementById('modalLater');
+            const neverLink = document.getElementById('modalNever');
+
+            // Clé localStorage pour "ne plus afficher"
+            const DONT_SHOW_KEY = 'femmeImpact_dontShowDonationModal';
+
+            // Fonction pour fermer le modal
+            function closeModal() {
+                modal.classList.remove('active');
+            }
+
+            // Fonction pour afficher le modal (si autorisé)
+            function showModal() {
+                const dontShow = localStorage.getItem(DONT_SHOW_KEY);
+                if (dontShow === 'true') return;
+                modal.classList.add('active');
+            }
+
+            // Fermeture : bouton ×
+            closeBtn.addEventListener('click', closeModal);
+
+            // Fermeture : clic sur l'overlay
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Bouton "Faire un don"
+            donateBtn.addEventListener('click', function() {
+                const message = currentLang === 'fr' ?
+                    '🔹 Redirection vers la page de donation (simulation). Merci pour votre soutien !' :
+                    '🔹 Redirecting to donation page (simulation). Thank you for your support!';
+                alert(message);
+                closeModal();
+            });
+
+            // "Plus tard" → ferme simplement
+            laterLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeModal();
+            });
+
+            // "Ne plus afficher" → stocke la préférence et ferme
+            neverLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.setItem(DONT_SHOW_KEY, 'true');
+                closeModal();
+            });
+
+            // ---------- Déclenchement après 5 secondes ----------
+            // On attend que le DOM soit chargé + 5s
+            setTimeout(showModal, 5000);
+
+            // ---------- Bouton "Faire un don" du header ----------
+            document.querySelector('.btn-donate-header').addEventListener('click', function() {
+                const msg = currentLang === 'fr' ?
                     '🔹 Redirection vers la page de donation (simulation).' :
-                    '🔹 Redirecting to donation page (simulation).'
-                );
+                    '🔹 Redirecting to donation page (simulation).';
+                alert(msg);
             });
 
             // ---------- Année dynamique dans le footer ----------
@@ -1508,7 +1767,7 @@
             document.getElementById('year').textContent = year;
             document.getElementById('year2').textContent = year;
 
-            console.log('✅ Page Accueil – Femme Impact & Droit (avec traduction FR/EN)');
+            console.log('✅ Page Accueil – Femme Impact & Droit (avec modal don après 5s)');
         })();
     </script>
 
