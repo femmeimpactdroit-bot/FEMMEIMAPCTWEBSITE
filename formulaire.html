@@ -15,7 +15,7 @@
 
     <style>
         /* ============================================================
-           RESET & BASE
+           RESET & BASE (inchangé)
            ============================================================ */
         *,
         *::before,
@@ -72,7 +72,7 @@
         }
 
         /* ============================================================
-           HEADER FIXE
+           HEADER FIXE (inchangé)
            ============================================================ */
         .header {
             position: fixed;
@@ -217,7 +217,7 @@
         }
 
         /* ============================================================
-           PAGE FORMULAIRE
+           PAGE FORMULAIRE (inchangé)
            ============================================================ */
         .page-form {
             min-height: 100vh;
@@ -517,7 +517,7 @@
         }
 
         /* ============================================================
-           FOOTER
+           FOOTER (inchangé)
            ============================================================ */
         .footer {
             background: #1C1115;
@@ -590,7 +590,7 @@
         }
 
         /* ============================================================
-           RESPONSIVE
+           RESPONSIVE (inchangé)
            ============================================================ */
         @media (max-width: 1024px) {
             .page-form .container {
@@ -771,7 +771,7 @@
     </header>
 
     <!-- ============================================================
-    PAGE FORMULAIRE – CORRECTION : name="message"
+    PAGE FORMULAIRE – Web3Forms
     ============================================================ -->
     <section class="page-form">
         <div class="container">
@@ -816,23 +816,26 @@
                     </div>
 
                     <!-- 
-                        ⚡ CORRECTION : le champ texte s'appelle maintenant "message"
-                        ⚡ Clé : FAF860
-                        ⚡ action : https://codefreeform.com/api/contact-api/
+                        ⚡ WEB3FORMS ⚡
+                        action   = https://api.web3forms.com/submit
+                        access_key = e63e75fc-9fae-406d-8c8d-dbb22e21e1e7
                     -->
                     <form 
                         id="permanenceForm" 
-                        action="https://codefreeform.com/api/contact-api/" 
+                        action="https://api.web3forms.com/submit" 
                         method="POST"
                     >
-                        <!-- Votre clé d'accès -->
-                        <input type="hidden" name="access_key" value="FAF860" />
+                        <!-- Clé d'accès Web3Forms -->
+                        <input type="hidden" name="access_key" value="e63e75fc-9fae-406d-8c8d-dbb22e21e1e7" />
 
-                        <!-- Objet de l'e-mail -->
+                        <!-- Objet de l'e-mail personnalisé -->
                         <input type="hidden" name="_subject" value="Demande de permanence juridique" />
 
-                        <!-- Redirection facultative -->
+                        <!-- Redirection facultative vers une page de remerciement -->
                         <!-- <input type="hidden" name="_next" value="https://votresite.com/merci.html" /> -->
+
+                        <!-- (Optionnel) Désactiver les spams avec un champ anti-robot -->
+                        <!-- <input type="checkbox" name="botcheck" class="hidden" style="display:none;"> -->
 
                         <!-- Nom et prénom -->
                         <div class="form-group">
@@ -883,9 +886,8 @@
                         </div>
 
                         <!-- 
-                            ⚡ ICI LA CORRECTION ⚡
-                            L'ID reste "description" pour le label, 
-                            mais le NAME est "message" pour CodeFreeForm
+                            ⚡ ATTENTION : le champ texte doit s'appeler "message" 
+                            pour Web3Forms.
                         -->
                         <div class="form-group">
                             <label for="description">Décrivez votre situation ou votre question <span class="required">*</span></label>
@@ -1021,7 +1023,7 @@
             // --- Année dynamique ---
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            console.log('✅ Formulaire corrigé – champ "message" ajouté, clé FAF860');
+            console.log('✅ Formulaire connecté à Web3Forms – clé : e63e75fc-9fae-406d-8c8d-dbb22e21e1e7');
         })();
     </script>
 
