@@ -15,7 +15,7 @@
 
     <style>
         /* ============================================================
-           RESET & BASE (identique aux autres pages)
+           RESET & BASE
            ============================================================ */
         *,
         *::before,
@@ -255,7 +255,7 @@
         }
 
         /* ============================================================
-           SECTION ACTIONS (avec images 16:9)
+           SECTION ACTIONS
            ============================================================ */
         .section-actions {
             padding: 80px 0 60px;
@@ -400,6 +400,98 @@
         }
 
         /* ============================================================
+           SECTION NOS PARTENAIRES — MARQUEE (logos rectangulaires)
+           ============================================================ */
+        .section-partners {
+            padding: 70px 0;
+            background: #ffffff;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            overflow: hidden;
+        }
+
+        .section-partners .partners-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-partners .partners-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .section-partners .partners-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+        }
+
+        .marquee-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 50px;
+            width: max-content;
+            animation: scrollPartners 20s linear infinite;
+            align-items: center;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .partner-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            gap: 10px;
+        }
+
+        /* Plus de cercle : l'image garde ses proportions */
+        .partner-item .logo-img {
+            height: 80px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .partner-item:hover .logo-img {
+            transform: scale(1.05);
+        }
+
+        .partner-item .partner-name {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+
+        .partner-item:hover .partner-name {
+            color: var(--primary);
+        }
+
+        @keyframes scrollPartners {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ============================================================
            SECTION CTA
            ============================================================ */
         .section-legal-cta {
@@ -533,9 +625,15 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 24px;
             }
-
             .page-header h1 {
                 font-size: 46px;
+            }
+            .partner-item .logo-img {
+                height: 65px;
+                max-width: 150px;
+            }
+            .marquee-track {
+                gap: 35px;
             }
         }
 
@@ -543,11 +641,9 @@
             :root {
                 --header-height: 72px;
             }
-
             .container {
                 padding: 0 24px;
             }
-
             .nav-menu {
                 position: fixed;
                 top: var(--header-height);
@@ -564,99 +660,96 @@
                 align-items: flex-start;
                 z-index: 999;
             }
-
             .nav-menu.open {
                 transform: translateY(0);
             }
-
             .nav-menu a {
                 font-size: 20px;
                 width: 100%;
                 padding: 6px 0;
             }
-
             .btn-contact-header {
                 display: none;
             }
-
             .hamburger {
                 display: flex;
             }
-
             .logo-text {
                 font-size: 18px;
             }
-
             .logo img {
                 width: 44px;
                 height: 44px;
             }
-
             .page-header {
                 padding: calc(var(--header-height) + 30px) 0 30px;
             }
-
             .page-header h1 {
                 font-size: 36px;
             }
-
             .page-header p {
                 font-size: 18px;
                 padding: 0 16px;
             }
-
             .section-actions {
                 padding: 50px 0 40px;
             }
-
             .section-actions .intro-text h2 {
                 font-size: 32px;
             }
-
             .section-actions .intro-text p {
                 font-size: 18px;
             }
-
             .actions-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-
             .action-card {
                 padding: 24px;
             }
-
             .action-card h3 {
                 font-size: 22px;
             }
-
             .action-card .btn-card {
                 align-self: stretch;
                 text-align: center;
             }
-
+            .section-partners {
+                padding: 50px 0;
+            }
+            .section-partners .partners-title {
+                font-size: 32px;
+            }
+            .section-partners .partners-subtitle {
+                font-size: 18px;
+            }
+            .partner-item .logo-img {
+                height: 55px;
+                max-width: 120px;
+            }
+            .partner-item .partner-name {
+                font-size: 0.8rem;
+            }
+            .marquee-track {
+                gap: 25px;
+            }
             .legal-cta-block {
                 padding: 40px 24px;
                 border-radius: 24px;
             }
-
             .legal-cta-block h2 {
                 font-size: 32px;
             }
-
             .legal-cta-block p {
                 font-size: 18px;
             }
-
             .legal-cta-block .btn-cta-light {
                 width: 100%;
                 padding: 14px 24px;
             }
-
             .section-legal-cta {
                 padding: 0 24px 60px;
             }
-
             .footer .container {
                 flex-direction: column;
                 gap: 30px;
@@ -667,13 +760,18 @@
             .page-header h1 {
                 font-size: 30px;
             }
-
             .section-actions .intro-text h2 {
                 font-size: 28px;
             }
-
             .action-card {
                 padding: 20px;
+            }
+            .partner-item .logo-img {
+                height: 45px;
+                max-width: 100px;
+            }
+            .marquee-track {
+                gap: 20px;
             }
         }
     </style>
@@ -738,7 +836,7 @@
 
             <div class="actions-grid">
 
-                <!-- Action 1 : Ateliers de sensibilisation -->
+                <!-- Action 1 -->
                 <div class="action-card">
                     <div class="card-icon"><i class="fas fa-users"></i></div>
                     <h3>Ateliers de sensibilisation</h3>
@@ -757,7 +855,7 @@
                     <a href="formulaire.html" class="btn-card">Accéder au formulaire</a>
                 </div>
 
-                <!-- Action 2 : Permanences juridiques -->
+                <!-- Action 2 -->
                 <div class="action-card">
                     <div class="card-icon"><i class="fas fa-gavel"></i></div>
                     <h3>Permanences juridiques</h3>
@@ -775,7 +873,7 @@
                     <a href="formulaire.html" class="btn-card">Accéder au formulaire</a>
                 </div>
 
-                <!-- Action 3 : Plaidoyer -->
+                <!-- Action 3 -->
                 <div class="action-card">
                     <div class="card-icon"><i class="fas fa-landmark"></i></div>
                     <h3>Plaidoyer</h3>
@@ -794,7 +892,7 @@
                     <a href="formulaire.html" class="btn-card">Accéder au formulaire</a>
                 </div>
 
-                <!-- Action 4 : Accompagnement personnalisé -->
+                <!-- Action 4 -->
                 <div class="action-card">
                     <div class="card-icon"><i class="fas fa-hand-holding-heart"></i></div>
                     <h3>Accompagnement personnalisé</h3>
@@ -813,7 +911,7 @@
                     <a href="formulaire.html" class="btn-card">Accéder au formulaire</a>
                 </div>
 
-                <!-- Action 5 : Partenariats locaux -->
+                <!-- Action 5 -->
                 <div class="action-card">
                     <div class="card-icon"><i class="fas fa-handshake"></i></div>
                     <h3>Partenariats locaux</h3>
@@ -832,6 +930,24 @@
                     <a href="formulaire.html" class="btn-card">Accéder au formulaire</a>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION NOS PARTENAIRES — MARQUEE AVEC LOGOS RECTANGULAIRES
+    ============================================================ -->
+    <section class="section-partners">
+        <div class="container">
+            <div class="partners-header">
+                <h2 class="partners-title">Nos Partenaires</h2>
+                <p class="partners-subtitle">Ils nous accompagnent et contribuent à notre mission</p>
+            </div>
+        </div>
+
+        <div class="marquee-wrapper">
+            <div class="marquee-track" id="marqueeTrack">
+                <!-- Rempli par JavaScript -->
             </div>
         </div>
     </section>
@@ -933,12 +1049,47 @@
                 window.location.href = 'contact.html';
             });
 
-            // --- Année dynamique dans le footer ---
+            // --- Année dynamique ---
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            console.log('✅ Page Nos actions — boutons "Accéder au formulaire" sur toutes les cartes, lien vers formulaire.html');
+            // --- Liste des 4 partenaires (avec image EFATEC réelle) ---
+            const partners = [
+                {
+                    name: 'EFATEC',
+                    img: 'https://res.cloudinary.com/dgvymqch7/image/upload/v1786114359/WhatsApp_Image_2026-08-07_at_14.48.16_1_jx0962.jpg'
+                },
+                {
+                    name: 'Justice Sans Frontière',
+                    img: 'https://res.cloudinary.com/dgvymqch7/image/upload/v1786114359/WhatsApp_Image_2026-08-07_at_14.48.15_1_uch2zb.jpg'
+                },
+                {
+                    name: 'Association Société Civile d\'Avocats',
+                    img: 'https://res.cloudinary.com/dgvymqch7/image/upload/v1786114359/WhatsApp_Image_2026-08-07_at_14.48.15_z5sm0m.jpg'
+                },
+                {
+                    name: 'Journal Fac Droit',
+                    img: 'https://res.cloudinary.com/dgvymqch7/image/upload/v1786114359/WhatsApp_Image_2026-08-07_at_14.48.16_ymei7p.jpg'
+                }
+            ];
+
+            const track = document.getElementById('marqueeTrack');
+
+            function buildItem(p) {
+                return `
+                    <div class="partner-item">
+                        <img src="${p.img}" alt="${p.name}" class="logo-img" loading="lazy" />
+                        <span class="partner-name">${p.name}</span>
+                    </div>
+                `;
+            }
+
+            // Première série + duplication pour défilement infini
+            const firstSet = partners.map(p => buildItem(p)).join('');
+            const secondSet = partners.map(p => buildItem(p)).join('');
+            track.innerHTML = firstSet + secondSet;
+
+            console.log('✅ Marquee des 4 partenaires avec logos rectangulaires.');
         })();
     </script>
-
 </body>
 </html>
