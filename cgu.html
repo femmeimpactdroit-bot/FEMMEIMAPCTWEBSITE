@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CGU · Femme Impact &amp; Droit</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,500&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8E1438;
+            --primary-hover: #74112F;
+            --secondary: #B07A61;
+            --text-primary: #3A1F25;
+            --text-secondary: #7C6661;
+            --bg-main: #F7F1EE;
+            --bg-card: #FFFFFF;
+            --border-light: #E8D8D1;
+            --badge-bg: #F2DFD8;
+            --header-height: 95px;
+            --max-width: 1280px;
+            --radius-card: 28px;
+            --radius-btn: 999px;
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ============================================================
+           HEADER FIXE
+           ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: #FCF9F8;
+            border-bottom: 1px solid var(--border-light);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .header.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .btn-contact-header {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: var(--radius-btn);
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            flex-shrink: 0;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .btn-contact-header:hover {
+            background: var(--primary-hover);
+            transform: scale(1.02);
+            color: #fff;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 6px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 4px;
+            transition: 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* ============================================================
+           BANNIÈRE DE PAGE
+           ============================================================ */
+        .page-header {
+            padding: calc(var(--header-height) + 50px) 0 40px;
+            background: #fff;
+            border-bottom: 1px solid var(--border-light);
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .page-header .badge-hero {
+            display: inline-block;
+            padding: 10px 24px;
+            border: 1px solid #DCC4BA;
+            border-radius: var(--radius-btn);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            background: transparent;
+            margin-bottom: 20px;
+        }
+
+        /* ============================================================
+           SECTION CGU
+           ============================================================ */
+        .section-cgu {
+            padding: 60px 0 80px;
+            background: var(--bg-main);
+        }
+
+        .cgu-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-card);
+            padding: 50px 60px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cgu-content .cgu-article {
+            margin-bottom: 40px;
+            padding-bottom: 35px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .cgu-content .cgu-article:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .cgu-content .cgu-article h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 14px;
+            letter-spacing: -0.3px;
+        }
+
+        .cgu-content .cgu-article h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin: 16px 0 10px;
+        }
+
+        .cgu-content .cgu-article p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .cgu-content .cgu-article p:last-child {
+            margin-bottom: 0;
+        }
+
+        .cgu-content .cgu-article ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 0 0;
+        }
+
+        .cgu-content .cgu-article ul li {
+            font-size: 17px;
+            color: var(--text-secondary);
+            padding: 4px 0;
+            padding-left: 24px;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .cgu-content .cgu-article ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cgu-content .cgu-article .highlight {
+            background: var(--badge-bg);
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-top: 12px;
+            font-size: 15px;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+        }
+
+        .cgu-content .cgu-article .highlight i {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        .cgu-footer-note {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .cgu-footer-note strong {
+            color: var(--text-primary);
+        }
+
+        .cgu-footer-note a {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .cgu-footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            background: #1C1115;
+            color: #CBC1BD;
+            padding: 60px 0 30px;
+            border-top: 3px solid var(--primary);
+        }
+
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-col {
+            flex: 1 1 200px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p,
+        .footer-col li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #CBC1BD;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: #CBC1BD;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+            font-size: 15px;
+            color: #A09691;
+            width: 100%;
+        }
+
+        .footer-bottom a {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .page-header h1 {
+                font-size: 42px;
+            }
+            .cgu-content {
+                padding: 40px 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 72px;
+            }
+
+            .container {
+                padding: 0 24px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: #FCF9F8;
+                flex-direction: column;
+                gap: 16px;
+                padding: 32px 24px 40px;
+                border-bottom: 1px solid var(--border-light);
+                transform: translateY(-120%);
+                transition: transform 0.4s ease;
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+                align-items: flex-start;
+                z-index: 999;
+            }
+
+            .nav-menu.open {
+                transform: translateY(0);
+            }
+
+            .nav-menu a {
+                font-size: 20px;
+                width: 100%;
+                padding: 6px 0;
+            }
+
+            .btn-contact-header {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .logo-text {
+                font-size: 18px;
+            }
+
+            .logo img {
+                width: 44px;
+                height: 44px;
+            }
+
+            .page-header {
+                padding: calc(var(--header-height) + 30px) 0 28px;
+            }
+
+            .page-header h1 {
+                font-size: 34px;
+            }
+
+            .page-header p {
+                font-size: 18px;
+                padding: 0 10px;
+            }
+
+            .section-cgu {
+                padding: 40px 0 60px;
+            }
+
+            .cgu-content {
+                padding: 30px 24px;
+                border-radius: 20px;
+            }
+
+            .cgu-content .cgu-article h2 {
+                font-size: 21px;
+            }
+
+            .cgu-content .cgu-article h3 {
+                font-size: 18px;
+            }
+
+            .cgu-content .cgu-article p,
+            .cgu-content .cgu-article ul li {
+                font-size: 16px;
+            }
+
+            .cgu-content .cgu-article .highlight {
+                font-size: 14px;
+                padding: 14px 16px;
+            }
+
+            .footer .container {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .cgu-content {
+                padding: 24px 18px;
+            }
+
+            .cgu-content .cgu-article h2 {
+                font-size: 19px;
+            }
+
+            .cgu-content .cgu-article p,
+            .cgu-content .cgu-article ul li {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="https://res.cloudinary.com/dgvymqch7/image/upload/v1783107902/WhatsApp_Image_2026-07-03_at_19.43.31_mp2ied.jpg" alt="Femme Impact & Droit - Logo" />
+                <span class="logo-text">Femme Impact <span>&amp;</span> Droit</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="vosdroit.html">Vos droits</a></li>
+                <li><a href="nosaction.html">Nos actions</a></li>
+                <li><a href="apropos.html">À propos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <a href="contact.html" class="btn-contact-header">Faire un don</a>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    BANNIÈRE DE PAGE
+    ============================================================ -->
+    <section class="page-header">
+        <div class="container">
+            <div class="badge-hero">Cadre légal</div>
+            <h1>Conditions Générales d'Utilisation</h1>
+            <p>
+                Les présentes CGU encadrent l'accès et l'utilisation du site de
+                l'association <strong>Femme Impact &amp; Droit</strong> (FID).
+                En naviguant sur ce site, vous acceptez leur application.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION CGU
+    ============================================================ -->
+    <section class="section-cgu">
+        <div class="container">
+            <div class="cgu-content">
+
+                <!-- Article 1 -->
+                <div class="cgu-article">
+                    <h2>Article 1 : Objet et Mentions Légales</h2>
+                    <p>
+                        Les présentes Conditions Générales d'Utilisation (CGU)
+                        ont pour objet d'encadrer l'accès et l'utilisation du site
+                        de l'association <strong>Femme Impact &amp; Droit</strong>
+                        (ci-après « l'Association » ou « FID »).
+                    </p>
+                    <p>
+                        <strong>Siège social :</strong> Le Havre France 76600<br />
+                        <strong>Statut :</strong> Association déclarée en France
+                        (Loi 1901)<br />
+                        <strong>Présidente :</strong> Madame Fatou Diallo<br />
+                        <strong>Hébergeur du site :</strong> OVHcloud
+                    </p>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="cgu-article">
+                    <h2>Article 2 : Définitions d'Utilisateur et Services</h2>
+                    <p>
+                        <strong>Utilisateur :</strong> Toute personne qui navigue
+                        sur le site internet, qu'elle soit simple visiteur ou
+                        membre de l'Association.
+                    </p>
+                    <p>
+                        <strong>Services :</strong> L'ensemble des fonctionnalités,
+                        outils, informations et contenus mis à disposition des
+                        Utilisateurs sur le site.
+                    </p>
+                </div>
+
+                <!-- Article 3 -->
+                <div class="cgu-article">
+                    <h2>Article 3 : Accès au site et aux services</h2>
+                    <p>
+                        L'accès au site est libre et gratuit. L'Association
+                        s'efforce de permettre un accès au site 24 heures sur 24,
+                        7 jours sur 7, sauf en cas de force majeure ou d'opérations
+                        de maintenance.
+                    </p>
+                    <p>
+                        L'utilisateur s'engage à utiliser le site dans le strict
+                        respect de son objet et des lois en vigueur en France.
+                    </p>
+                </div>
+
+                <!-- Article 4 -->
+                <div class="cgu-article">
+                    <h2>Article 4 : Propriété Intellectuelle</h2>
+                    <p>
+                        Le contenu du site (textes, logos, graphismes,
+                        photographies, vidéos, charte graphique, etc.) est protégé
+                        par le droit d'auteur et la propriété intellectuelle.
+                    </p>
+                    <p>
+                        Toute reproduction, représentation, modification, ou
+                        adaptation de tout ou partie des éléments du site, sans
+                        l'autorisation écrite préalable de l'Association Femme
+                        Impact &amp; Droit, est strictement interdite.
+                    </p>
+                </div>
+
+                <!-- Article 5 -->
+                <div class="cgu-article">
+                    <h2>Article 5 : Données Personnelles et Vie Privée</h2>
+                    <p>
+                        L'Association s'engage à ce que la collecte et le traitement
+                        de vos données, effectués à partir du site, soient conformes
+                        au Règlement Général sur la Protection des Données (RGPD)
+                        européen.
+                    </p>
+                    <p>
+                        La gestion des adhésions, des dons, et de l'information
+                        relative aux activités de l'association. L'Utilisateur
+                        dispose d'un droit d'accès, de rectification, de modification
+                        et de suppression des données le concernant.
+                    </p>
+                    <div class="highlight">
+                        <i class="fas fa-envelope"></i>
+                        Pour exercer ces droits ou pour toute question sur la
+                        protection des données, contactez l'Association à
+                        <a href="mailto:femmeimpactdroit@gmail.com" style="color:var(--primary);font-weight:500;">femmeimpactdroit@gmail.com</a>.
+                    </div>
+                </div>
+
+                <!-- Article 6 -->
+                <div class="cgu-article">
+                    <h2>Article 6 : Limitation de responsabilité</h2>
+                    <p>
+                        Le site peut contenir des liens vers des sites tiers.
+                        L'Association Femme Impact &amp; Droit ne peut être tenue
+                        responsable des contenus, informations ou services
+                        disponibles sur ces sites.
+                    </p>
+                    <p>
+                        L'Association ne saurait être tenue responsable des
+                        éventuels dommages techniques ou pertes de données
+                        résultant de l'utilisation de son site.
+                    </p>
+
+                    <h3>Permanences juridiques en ligne</h3>
+                    <p>
+                        Les permanences juridiques en ligne proposées par
+                        <strong>Femme Impact &amp; Droit (FID)</strong> ont pour
+                        unique vocation de fournir une information juridique
+                        générale et à titre indicatif, dans le but de sensibiliser
+                        et d'orienter les femmes sur leurs droits.
+                    </p>
+                    <p>
+                        Ces échanges sont assurés par des juristes bénévoles,
+                        dans un esprit d'engagement associatif et de solidarité.
+                        Les informations communiquées ne constituent en aucun cas
+                        une consultation juridique au sens légal du terme, ni un
+                        avis juridique personnalisé, et ne sauraient se substituer
+                        à l'accompagnement d'un avocat inscrit au barreau ou de
+                        tout professionnel du droit habilité.
+                    </p>
+                    <div class="highlight">
+                        <i class="fas fa-scale-balanced"></i>
+                        <strong>FID ne saurait être tenue responsable</strong> des
+                        décisions prises par les bénéficiaires sur la base des
+                        informations échangées lors de ces permanences, ni des
+                        conséquences directes ou indirectes qui pourraient en
+                        résulter. Chaque situation étant unique, il est vivement
+                        recommandé aux personnes concernées de consulter un avocat
+                        ou tout professionnel du droit compétent pour toute
+                        question nécessitant une analyse juridique approfondie,
+                        une représentation en justice, ou une décision engageant
+                        leurs droits.
+                    </div>
+                    <p>
+                        En sollicitant une permanence juridique de FID, la
+                        bénéficiaire reconnaît avoir pris connaissance de la
+                        présente clause et accepte que les échanges soient de
+                        nature purement informative.
+                    </p>
+                </div>
+
+                <!-- Article 7 -->
+                <div class="cgu-article">
+                    <h2>Article 7 : Modification des CGU</h2>
+                    <p>
+                        L'Association se réserve le droit de modifier
+                        unilatéralement et à tout moment le contenu des présentes
+                        CGU. Les Utilisateurs sont donc invités à s'y référer
+                        régulièrement. La dernière version en ligne prévaudra
+                        toujours sur les versions antérieures.
+                    </p>
+                </div>
+
+                <!-- Article 8 -->
+                <div class="cgu-article">
+                    <h2>Article 8 : Droit applicable et juridiction compétente</h2>
+                    <p>
+                        Les présentes CGU sont régies par le droit français.
+                        En cas de litige né de l'interprétation ou de l'exécution
+                        des présentes conditions, et après l'échec de toute
+                        tentative de résolution amiable, les tribunaux français
+                        seront compétents.
+                    </p>
+                </div>
+
+                <!-- Note finale -->
+                <div class="cgu-footer-note">
+                    <p>
+                        Dernière mise à jour : <span id="updateDate"></span>
+                        &nbsp;·&nbsp; © <span id="year"></span>
+                        <strong>Association Femme Impact &amp; Droit</strong>
+                        — Tous droits réservés.
+                    </p>
+                    <p style="margin-top: 8px; font-size: 14px;">
+                        <a href="mentions.html">Mentions légales</a>
+                        &nbsp;·&nbsp;
+                        <a href="#">Politique de confidentialité</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h4>Femme Impact &amp; Droit</h4>
+                <p>
+                    Association loi 1901 – à but non lucratif.<br />
+                    Informer, accompagner, défendre les droits des femmes.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Nos territoires</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt" style="color:var(--secondary);width:20px;"></i> France</li>
+                    <li><i class="fas fa-map-marker-alt" style="color:var(--secondary);width:20px;"></i> Sénégal</li>
+                    <li><i class="fas fa-map-marker-alt" style="color:var(--secondary);width:20px;"></i> Congo</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Suivez-nous</h4>
+                <ul>
+                    <li><a href="https://www.instagram.com/femme_impact_et_droit?igsh=M2FpaDB1azZzajJm" target="_blank"><i class="fab fa-instagram" style="margin-right:8px;"></i> Instagram</a></li>
+                    <li><a href="https://www.instagram.com/femme_impact_et_droit?igsh=M2FpaDB1azZzajJm" target="_blank"><i class="fab fa-tiktok" style="margin-right:8px;"></i> TikTok</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin-in" style="margin-right:8px;"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fas fa-envelope" style="color:var(--secondary);width:20px;"></i> femmeimpactdroit@gmail.com</li>
+                    <li><i class="fas fa-phone" style="color:var(--secondary);width:20px;"></i> +221 77 787 37 02</li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                &copy; <span id="yearFooter"></span> Femme Impact &amp; Droit – Tous droits réservés.
+                &nbsp;|&nbsp; <a href="mentions.html">Mentions légales</a>
+                &nbsp;|&nbsp; <a href="cgu.html">CGU</a>
+                &nbsp;|&nbsp; <a href="#">Politique de confidentialité</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // --- Header scroll shadow ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 10) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }, { passive: true });
+
+            // --- Hamburger menu ---
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('open');
+                navMenu.classList.toggle('open');
+            });
+
+            navMenu.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('open');
+                    navMenu.classList.remove('open');
+                });
+            });
+
+            // --- Dates dynamiques ---
+            const now = new Date();
+            const year = now.getFullYear();
+            const dateStr = now.toLocaleDateString('fr-FR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            document.getElementById('year').textContent = year;
+            document.getElementById('yearFooter').textContent = year;
+            document.getElementById('updateDate').textContent = dateStr;
+
+            console.log('✅ Page CGU chargée.');
+        })();
+    </script>
+
+</body>
+</html>
